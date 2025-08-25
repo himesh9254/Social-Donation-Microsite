@@ -1,0 +1,14 @@
+<svg width="1920" height="600" viewBox="0 0 1920 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:0.1" />
+      <stop offset="50%" style="stop-color:#6366f1;stop-opacity:0.05" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.1" />
+    </linearGradient>
+    <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1" fill="#0ea5e9" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="600" fill="url(#heroGradient)"/>
+  <rect width="1920" height="600" fill="url(#dots)"/>
+</svg>

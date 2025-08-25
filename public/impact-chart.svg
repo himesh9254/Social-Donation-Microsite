@@ -1,0 +1,49 @@
+<svg width="600" height="300" viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="educationGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:0.7" />
+    </linearGradient>
+    <linearGradient id="healthGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:0.7" />
+    </linearGradient>
+    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.7" />
+    </linearGradient>
+    <linearGradient id="operationsGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0.7" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Chart background -->
+  <rect width="600" height="300" rx="20" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+  
+  <!-- Chart bars -->
+  <g transform="translate(100, 50)">
+    <!-- Education - 40% -->
+    <rect x="0" y="120" width="80" height="120" rx="8" fill="url(#educationGradient)"/>
+    <text x="40" y="250" text-anchor="middle" fill="#64748b" font-size="14" font-weight="600">40%</text>
+    <text x="40" y="270" text-anchor="middle" fill="#64748b" font-size="12">Education</text>
+    
+    <!-- Health - 30% -->
+    <rect x="120" y="150" width="80" height="90" rx="8" fill="url(#healthGradient)"/>
+    <text x="160" y="250" text-anchor="middle" fill="#64748b" font-size="14" font-weight="600">30%</text>
+    <text x="160" y="270" text-anchor="middle" fill="#64748b" font-size="12">Health</text>
+    
+    <!-- Water - 20% -->
+    <rect x="240" y="180" width="80" height="60" rx="8" fill="url(#waterGradient)"/>
+    <text x="280" y="250" text-anchor="middle" fill="#64748b" font-size="14" font-weight="600">20%</text>
+    <text x="280" y="270" text-anchor="middle" fill="#64748b" font-size="12">Water</text>
+    
+    <!-- Operations - 10% -->
+    <rect x="360" y="210" width="80" height="30" rx="8" fill="url(#operationsGradient)"/>
+    <text x="400" y="250" text-anchor="middle" fill="#64748b" font-size="14" font-weight="600">10%</text>
+    <text x="400" y="270" text-anchor="middle" fill="#64748b" font-size="12">Operations</text>
+  </g>
+  
+  <!-- Chart title -->
+  <text x="300" y="30" text-anchor="middle" fill="#1e293b" font-size="18" font-weight="bold">Donation Allocation</text>
+</svg>

@@ -39,7 +39,6 @@ export default function DonationForm() {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -76,7 +75,6 @@ export default function DonationForm() {
         setPaymentStatus('success');
         console.log('Donation processed successfully:', data);
         
-        // Reset form on success
         setFormData({
           name: '',
           email: '',
@@ -99,137 +97,173 @@ export default function DonationForm() {
   const isFormValid = formData.name && formData.email && parseFloat(formData.amount) >= 1;
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-20 sm:py-24">
-      <h2 className="text-2xl font-semibold sm:text-3xl">Make a Donation</h2>
-      <p className="mt-3 text-foreground/70">
-        Your contribution makes a real difference. Complete donation processing with AI-powered thank you emails!
-      </p>
+    <div className="mx-auto max-w-4xl px-6 py-20 sm:py-24">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl font-bold sm:text-4xl mb-4">Make a Donation</h2>
+        <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+          Your contribution makes a real difference. Every dollar helps us provide education, healthcare, 
+          and clean water to communities in need.
+        </p>
+      </div>
 
       {paymentStatus === 'success' && (
-        <div className="mt-6 rounded-lg bg-green-50 border border-green-200 p-4">
-          <p className="text-green-800">Thank you for your donation! You will receive a personalized thank you email shortly.</p>
+        <div className="mb-8 rounded-xl bg-green-50 border border-green-200 p-6">
+          <div className="flex items-center gap-3">
+            <div className="flex-shrink-0">
+              <span className="text-2xl">✅</span>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-green-800">Thank you for your donation!</h3>
+              <p className="text-green-700">You will receive a personalized thank you email shortly.</p>
+            </div>
+          </div>
         </div>
       )}
 
       {paymentStatus === 'error' && (
-        <div className="mt-6 rounded-lg bg-red-50 border border-red-200 p-4">
-          <p className="text-red-800">Donation failed. Please try again or contact support if the problem persists.</p>
+        <div className="mb-8 rounded-xl bg-red-50 border border-red-200 p-6">
+          <div className="flex items-center gap-3">
+            <div className="flex-shrink-0">
+              <span className="text-2xl">❌</span>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-red-800">Donation failed</h3>
+              <p className="text-red-700">Please try again or contact support if the problem persists.</p>
+            </div>
+          </div>
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-1 gap-5">
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium">
-              Full Name *
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Jane Doe"
-              value={formData.name}
-              onChange={handleInputChange}
-              className={`mt-2 w-full rounded-lg border bg-background px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-[#0ea5e9] ${
-                errors.name ? 'border-red-300' : 'border-foreground/15'
-              }`}
-            />
-            {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
+      <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div>
+              <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                <span className="mr-2">👤</span>Full Name *
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Jane Doe"
+                value={formData.name}
+                onChange={handleInputChange}
+                className={`w-full rounded-xl border bg-gray-50 px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors ${
+                  errors.name ? 'border-red-300' : 'border-gray-300'
+                }`}
+              />
+              {errors.name && <p className="mt-2 text-sm text-red-600">{errors.name}</p>}
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                <span className="mr-2">📧</span>Email *
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="jane@example.com"
+                value={formData.email}
+                onChange={handleInputChange}
+                className={`w-full rounded-xl border bg-gray-50 px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors ${
+                  errors.email ? 'border-red-300' : 'border-gray-300'
+                }`}
+              />
+              {errors.email && <p className="mt-2 text-sm text-red-600">{errors.email}</p>}
+            </div>
           </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium">
-              Email *
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="jane@example.com"
-              value={formData.email}
-              onChange={handleInputChange}
-              className={`mt-2 w-full rounded-lg border bg-background px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-[#0ea5e9] ${
-                errors.email ? 'border-red-300' : 'border-foreground/15'
-              }`}
-            />
-            {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
-          </div>
-        </div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div>
+              <label htmlFor="amount" className="block text-sm font-semibold text-gray-700 mb-2">
+                <span className="mr-2">💰</span>Amount (USD) *
+              </label>
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                <input
+                  id="amount"
+                  name="amount"
+                  type="number"
+                  min="1"
+                  step="1"
+                  placeholder="25"
+                  value={formData.amount}
+                  onChange={handleInputChange}
+                  className={`w-full rounded-xl border bg-gray-50 pl-8 pr-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors ${
+                    errors.amount ? 'border-red-300' : 'border-gray-300'
+                  }`}
+                />
+              </div>
+              {errors.amount && <p className="mt-2 text-sm text-red-600">{errors.amount}</p>}
+            </div>
+            <div>
+              <label htmlFor="frequency" className="block text-sm font-semibold text-gray-700 mb-2">
+                <span className="mr-2">🔄</span>Frequency
+              </label>
+              <select
+                id="frequency"
+                name="frequency"
+                value={formData.frequency}
+                onChange={handleInputChange}
+                className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors"
+              >
+                <option>One-time</option>
+                <option>Monthly</option>
+              </select>
+            </div>
+          </div>
+
           <div>
-            <label htmlFor="amount" className="block text-sm font-medium">
-              Amount (USD) *
+            <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+              <span className="mr-2">💬</span>Message (optional)
             </label>
-            <input
-              id="amount"
-              name="amount"
-              type="number"
-              min="1"
-              step="1"
-              placeholder="25"
-              value={formData.amount}
+            <textarea
+              id="message"
+              name="message"
+              rows={4}
+              placeholder="Leave a note about why you're donating or any specific cause you'd like to support..."
+              value={formData.message}
               onChange={handleInputChange}
-              className={`mt-2 w-full rounded-lg border bg-background px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-[#0ea5e9] ${
-                errors.amount ? 'border-red-300' : 'border-foreground/15'
-              }`}
+              className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors"
             />
-            {errors.amount && <p className="mt-1 text-sm text-red-600">{errors.amount}</p>}
           </div>
-          <div>
-            <label htmlFor="frequency" className="block text-sm font-medium">
-              Frequency
-            </label>
-            <select
-              id="frequency"
-              name="frequency"
-              value={formData.frequency}
-              onChange={handleInputChange}
-              className="mt-2 w-full rounded-lg border border-foreground/15 bg-background px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-[#0ea5e9]"
-            >
-              <option>One-time</option>
-              <option>Monthly</option>
-            </select>
-          </div>
-        </div>
 
-        <div>
-          <label htmlFor="message" className="block text-sm font-medium">
-            Message (optional)
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows={4}
-            placeholder="Leave a note…"
-            value={formData.message}
-            onChange={handleInputChange}
-            className="mt-2 w-full rounded-lg border border-foreground/15 bg-background px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-[#0ea5e9]"
-          />
-        </div>
-
-        <div className="space-y-4">
-          <div className="flex items-center justify-between gap-4">
-            <p className="text-xs text-foreground/60">
-              Your donation will be processed and you'll receive a personalized AI-generated thank you email.
-            </p>
+          <div className="bg-blue-50 rounded-xl p-6 border border-blue-200">
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0">
+                <span className="text-xl">ℹ️</span>
+              </div>
+              <div className="text-sm text-blue-800">
+                <p className="font-medium mb-1">What happens next?</p>
+                <ul className="space-y-1 text-blue-700">
+                  <li>• Your donation will be processed securely</li>
+                  <li>• You'll receive a personalized AI-generated thank you email</li>
+                  <li>• Your contribution will be allocated to our programs</li>
+                  <li>• We'll send you impact updates on how your donation is making a difference</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           <button
             type="submit"
             disabled={!isFormValid || isProcessing}
-            className="w-full inline-flex items-center justify-center rounded-full bg-[#22c55e] px-6 py-3 text-sm font-medium text-white shadow-sm ring-1 ring-inset ring-white/10 transition hover:bg-[#16a34a] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-green-600 to-blue-600 px-8 py-4 text-base font-semibold text-white shadow-lg ring-1 ring-inset ring-white/10 transition-all hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
             {isProcessing ? (
               <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
                 Processing Donation...
               </>
             ) : (
-              'Submit Donation'
+              <>
+                <span className="mr-2">💝</span>
+                Submit Donation
+              </>
             )}
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
