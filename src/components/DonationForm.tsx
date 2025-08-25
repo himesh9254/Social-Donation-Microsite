@@ -99,8 +99,8 @@ export default function DonationForm() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-20 sm:py-24">
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold sm:text-4xl mb-4">Make a Donation</h2>
-        <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+        <h2 className="text-3xl font-bold sm:text-4xl mb-4 text-gray-900">Make a Donation</h2>
+        <p className="text-lg text-gray-700 max-w-2xl mx-auto font-medium">
           Your contribution makes a real difference. Every dollar helps us provide education, healthcare, 
           and clean water to communities in need.
         </p>
@@ -138,7 +138,7 @@ export default function DonationForm() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
-              <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+              <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
                 <span className="mr-2">👤</span>Full Name *
               </label>
               <input
@@ -155,7 +155,7 @@ export default function DonationForm() {
               {errors.name && <p className="mt-2 text-sm text-red-600">{errors.name}</p>}
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+              <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
                 <span className="mr-2">📧</span>Email *
               </label>
               <input
@@ -175,7 +175,7 @@ export default function DonationForm() {
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
-              <label htmlFor="amount" className="block text-sm font-semibold text-gray-700 mb-2">
+              <label htmlFor="amount" className="block text-sm font-semibold text-gray-900 mb-2">
                 <span className="mr-2">💰</span>Amount (USD) *
               </label>
               <div className="relative">
@@ -197,7 +197,7 @@ export default function DonationForm() {
               {errors.amount && <p className="mt-2 text-sm text-red-600">{errors.amount}</p>}
             </div>
             <div>
-              <label htmlFor="frequency" className="block text-sm font-semibold text-gray-700 mb-2">
+              <label htmlFor="frequency" className="block text-sm font-semibold text-gray-900 mb-2">
                 <span className="mr-2">🔄</span>Frequency
               </label>
               <select
@@ -214,7 +214,7 @@ export default function DonationForm() {
           </div>
 
           <div>
-            <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+            <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
               <span className="mr-2">💬</span>Message (optional)
             </label>
             <textarea

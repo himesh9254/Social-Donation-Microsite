@@ -20,7 +20,7 @@ export default function Home() {
                             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent">
                                 Together, we turn kindness into impact
                             </h1>
-                            <p className="mt-6 text-lg/8 text-foreground/80">
+                            <p className="mt-6 text-lg/8 text-gray-700 font-medium">
                                 Your donation supports critical programs in education, health, and community resilience. 
                                 Every contribution creates lasting positive change in communities around the world.
                             </p>
@@ -33,7 +33,7 @@ export default function Home() {
                                 </a>
                                 <a
                                     href="#about"
-                                    className="inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-semibold ring-1 ring-inset ring-foreground/15 text-foreground hover:bg-foreground/5 transition-all hover:scale-105"
+                                    className="inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-semibold ring-1 ring-inset ring-gray-300 text-gray-700 bg-white hover:bg-gray-50 transition-all hover:scale-105"
                                 >
                                     📖 Learn More
                                 </a>
@@ -87,8 +87,8 @@ export default function Home() {
                                     Our Mission
                                 </span>
                             </div>
-                            <h2 className="text-3xl font-bold sm:text-4xl">Empowering Communities Through Sustainable Change</h2>
-                            <p className="mt-6 text-lg text-foreground/80 leading-relaxed">
+                            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900">Empowering Communities Through Sustainable Change</h2>
+                            <p className="mt-6 text-lg text-gray-700 leading-relaxed font-medium">
                                 We partner with local organizations to deliver measurable outcomes. From scholarships and
                                 safe water access to emergency relief, we focus on initiatives that create lasting change
                                 and empower communities to build their own future.
@@ -98,25 +98,25 @@ export default function Home() {
                                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100">
                                         <span className="text-green-600">✓</span>
                                     </div>
-                                    <span className="text-sm font-medium">Transparent reporting</span>
+                                    <span className="text-sm font-medium text-gray-700">Transparent reporting</span>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100">
                                         <span className="text-green-600">✓</span>
                                     </div>
-                                    <span className="text-sm font-medium">Community-led projects</span>
+                                    <span className="text-sm font-medium text-gray-700">Community-led projects</span>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100">
                                         <span className="text-green-600">✓</span>
                                     </div>
-                                    <span className="text-sm font-medium">Low admin overhead</span>
+                                    <span className="text-sm font-medium text-gray-700">Low admin overhead</span>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100">
                                         <span className="text-green-600">✓</span>
                                     </div>
-                                    <span className="text-sm font-medium">Global + local impact</span>
+                                    <span className="text-sm font-medium text-gray-700">Global + local impact</span>
                                 </div>
                             </div>
                         </div>
@@ -127,8 +127,8 @@ export default function Home() {
                 <section className="bg-gradient-to-br from-gray-50 to-blue-50 py-20 sm:py-24">
                     <div className="mx-auto max-w-7xl px-6">
                         <div className="text-center mb-16">
-                            <h2 className="text-3xl font-bold sm:text-4xl">Your Impact</h2>
-                            <p className="mx-auto mt-4 max-w-2xl text-lg text-foreground/70">
+                            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900">Your Impact</h2>
+                            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-700 font-medium">
                                 Every contribution is put to work with care. Here is how your donation creates real change.
                             </p>
                         </div>
@@ -180,11 +180,11 @@ export default function Home() {
                 </section>
 
                 {/* Testimonials Section */}
-                <section className="py-20 sm:py-24">
+                <section className="py-20 sm:py-24 bg-white">
                     <div className="mx-auto max-w-7xl px-6">
                         <div className="text-center mb-16">
-                            <h2 className="text-3xl font-bold sm:text-4xl">Stories of Impact</h2>
-                            <p className="mx-auto mt-4 max-w-2xl text-lg text-foreground/70">
+                            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900">Stories of Impact</h2>
+                            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-700 font-medium">
                                 Hear from the communities and donors whose lives have been changed.
                             </p>
                         </div>
@@ -221,54 +221,54 @@ export default function Home() {
                 </section>
 
                 {/* Footer */}
-                <footer className="border-t border-foreground/10 bg-background/60 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                <footer className="border-t border-gray-200 bg-white">
                     <div className="mx-auto max-w-7xl px-6 py-12">
                         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
                             <div className="col-span-1 md:col-span-2">
-                                <h3 className="text-lg font-semibold mb-4">Social Good Fund</h3>
-                                <p className="text-sm text-foreground/70 mb-4">
+                                <h3 className="text-lg font-semibold mb-4 text-gray-900">Social Good Fund</h3>
+                                <p className="text-sm text-gray-600 mb-4">
                                     Making the world a better place, one donation at a time. 
                                     We believe in the power of collective action to create lasting positive change.
                                 </p>
                                 <div className="flex space-x-4">
-                                    <a href="#" className="text-foreground/60 hover:text-foreground transition-colors">
+                                    <a href="#" className="text-gray-400 hover:text-gray-600 transition-colors">
                                         <span className="sr-only">Twitter</span>
                                         <span className="text-xl">🐦</span>
                                     </a>
-                                    <a href="#" className="text-foreground/60 hover:text-foreground transition-colors">
+                                    <a href="#" className="text-gray-400 hover:text-gray-600 transition-colors">
                                         <span className="sr-only">Instagram</span>
                                         <span className="text-xl">📷</span>
                                     </a>
-                                    <a href="#" className="text-foreground/60 hover:text-foreground transition-colors">
+                                    <a href="#" className="text-gray-400 hover:text-gray-600 transition-colors">
                                         <span className="sr-only">LinkedIn</span>
                                         <span className="text-xl">💼</span>
                                     </a>
                                 </div>
                             </div>
                             <div>
-                                <h4 className="text-sm font-semibold mb-4">Quick Links</h4>
+                                <h4 className="text-sm font-semibold mb-4 text-gray-900">Quick Links</h4>
                                 <ul className="space-y-2 text-sm">
-                                    <li><a href="#about" className="text-foreground/60 hover:text-foreground transition-colors">About Us</a></li>
-                                    <li><a href="#donate" className="text-foreground/60 hover:text-foreground transition-colors">Donate</a></li>
-                                    <li><a href="/admin" className="text-foreground/60 hover:text-foreground transition-colors">Admin</a></li>
-                                    <li><a href="/admin/donations" className="text-foreground/60 hover:text-foreground transition-colors">Donations</a></li>
+                                    <li><a href="#about" className="text-gray-600 hover:text-gray-900 transition-colors">About Us</a></li>
+                                    <li><a href="#donate" className="text-gray-600 hover:text-gray-900 transition-colors">Donate</a></li>
+                                    <li><a href="/admin" className="text-gray-600 hover:text-gray-900 transition-colors">Admin</a></li>
+                                    <li><a href="/admin/donations" className="text-gray-600 hover:text-gray-900 transition-colors">Donations</a></li>
                                 </ul>
                             </div>
                             <div>
-                                <h4 className="text-sm font-semibold mb-4">Contact</h4>
-                                <ul className="space-y-2 text-sm text-foreground/60">
+                                <h4 className="text-sm font-semibold mb-4 text-gray-900">Contact</h4>
+                                <ul className="space-y-2 text-sm text-gray-600">
                                     <li>📧 hello@socialgoodfund.org</li>
                                     <li>📞 +1 (555) 123-4567</li>
                                     <li>📍 123 Charity St, Good City, GC 12345</li>
                                 </ul>
                             </div>
                         </div>
-                        <div className="mt-8 pt-8 border-t border-foreground/10">
+                        <div className="mt-8 pt-8 border-t border-gray-200">
                             <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-                                <p className="text-sm text-foreground/70">© {new Date().getFullYear()} Social Good Fund. All rights reserved.</p>
+                                <p className="text-sm text-gray-600">© {new Date().getFullYear()} Social Good Fund. All rights reserved.</p>
                                 <div className="flex items-center gap-4 text-sm">
-                                    <a className="text-foreground/60 hover:text-foreground transition-colors" href="#">Privacy Policy</a>
-                                    <a className="text-foreground/60 hover:text-foreground transition-colors" href="#">Terms of Service</a>
+                                    <a className="text-gray-600 hover:text-gray-900 transition-colors" href="#">Privacy Policy</a>
+                                    <a className="text-gray-600 hover:text-gray-900 transition-colors" href="#">Terms of Service</a>
                                 </div>
                             </div>
                         </div>
@@ -317,17 +317,17 @@ type TestimonialCardProps = {
 
 function TestimonialCard({ quote, author, role, location, avatar }: TestimonialCardProps) {
     return (
-        <div className="rounded-2xl border border-foreground/10 bg-background p-6 shadow-sm hover:shadow-md transition-all">
+        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-all">
             <div className="mb-4">
                 <span className="text-2xl">{avatar}</span>
             </div>
-            <blockquote className="text-sm text-foreground/80 mb-4">
+            <blockquote className="text-sm text-gray-700 mb-4 font-medium">
                 "{quote}"
             </blockquote>
             <div>
-                <div className="font-medium text-sm">{author}</div>
-                <div className="text-xs text-foreground/60">{role}</div>
-                <div className="text-xs text-foreground/60">{location}</div>
+                <div className="font-medium text-sm text-gray-900">{author}</div>
+                <div className="text-xs text-gray-600">{role}</div>
+                <div className="text-xs text-gray-600">{location}</div>
             </div>
         </div>
     );
