@@ -1,0 +1,51 @@
+backend:
+  name: test-repo
+  # name: git-gateway
+  # branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# publish_mode: editorial_workflow
+
+collections:
+  - name: "hero"
+    label: "Hero Section"
+    files:
+      - file: "content/hero.md"
+        label: "Hero Content"
+        name: "hero"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "text" }
+          - { label: "CTA Label", name: "cta_label", widget: "string", default: "Donate Now" }
+          - { label: "CTA Link", name: "cta_link", widget: "string", default: "#donate" }
+
+  - name: "about"
+    label: "About Section"
+    files:
+      - file: "content/about.md"
+        label: "About Content"
+        name: "about"
+        fields:
+          - { label: "Heading", name: "heading", widget: "string", default: "About the Cause" }
+          - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Highlights", name: "highlights", widget: "list", field: { label: "Item", name: "item", widget: "string" } }
+
+  - name: "impact"
+    label: "Impact Section"
+    files:
+      - file: "content/impact.md"
+        label: "Impact Content"
+        name: "impact"
+        fields:
+          - { label: "Heading", name: "heading", widget: "string", default: "Your Impact" }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Value", name: "value", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+
+
