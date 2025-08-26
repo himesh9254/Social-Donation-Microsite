@@ -80,3 +80,4 @@ export function getDonationsByEmail(email: string): DonationRecord[] {
   return donations.filter(donation => donation.donorEmail === email);
 }
 
+

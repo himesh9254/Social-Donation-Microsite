@@ -148,7 +148,7 @@ export default function DonationForm() {
                 placeholder="Jane Doe"
                 value={formData.name}
                 onChange={handleInputChange}
-                className={`w-full rounded-xl border bg-gray-50 px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors ${
+                className={`w-full rounded-xl border bg-gray-50 px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors placeholder:text-gray-600 placeholder:font-medium ${
                   errors.name ? 'border-red-300' : 'border-gray-300'
                 }`}
               />
@@ -165,7 +165,7 @@ export default function DonationForm() {
                 placeholder="jane@example.com"
                 value={formData.email}
                 onChange={handleInputChange}
-                className={`w-full rounded-xl border bg-gray-50 px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors ${
+                className={`w-full rounded-xl border bg-gray-50 px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors placeholder:text-gray-600 placeholder:font-medium ${
                   errors.email ? 'border-red-300' : 'border-gray-300'
                 }`}
               />
@@ -189,7 +189,7 @@ export default function DonationForm() {
                   placeholder="25"
                   value={formData.amount}
                   onChange={handleInputChange}
-                  className={`w-full rounded-xl border bg-gray-50 pl-8 pr-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors ${
+                  className={`w-full rounded-xl border bg-gray-50 pl-8 pr-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors placeholder:text-gray-600 placeholder:font-medium ${
                     errors.amount ? 'border-red-300' : 'border-gray-300'
                   }`}
                 />
@@ -205,10 +205,10 @@ export default function DonationForm() {
                 name="frequency"
                 value={formData.frequency}
                 onChange={handleInputChange}
-                className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors"
+                className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors text-gray-900 font-medium"
               >
-                <option>One-time</option>
-                <option>Monthly</option>
+                <option className="text-gray-900 font-medium">One-time</option>
+                <option className="text-gray-900 font-medium">Monthly</option>
               </select>
             </div>
           </div>
@@ -224,7 +224,7 @@ export default function DonationForm() {
               placeholder="Leave a note about why you're donating or any specific cause you'd like to support..."
               value={formData.message}
               onChange={handleInputChange}
-              className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors"
+              className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-sm shadow-sm outline-none ring-0 focus:border-blue-500 focus:bg-white transition-colors placeholder:text-gray-600 placeholder:font-medium"
             />
           </div>
 

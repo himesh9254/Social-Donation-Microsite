@@ -74,3 +74,4 @@ After PayPal integration, consider adding:
 - AI-powered thank you messages
 - Analytics and reporting
 
+
