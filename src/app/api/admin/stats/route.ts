@@ -20,14 +20,14 @@ export async function GET() {
     const thisMonth = new Date().getMonth();
     const thisYear = new Date().getFullYear();
     const thisMonthDonations = donations.filter(d => {
-      const donationDate = new Date(d.date);
+      const donationDate = new Date(d.createdAt);
       return donationDate.getMonth() === thisMonth && donationDate.getFullYear() === thisYear;
     });
     
     const lastMonth = thisMonth === 0 ? 11 : thisMonth - 1;
     const lastYear = thisMonth === 0 ? thisYear - 1 : thisYear;
     const lastMonthDonations = donations.filter(d => {
-      const donationDate = new Date(d.date);
+      const donationDate = new Date(d.createdAt);
       return donationDate.getMonth() === lastMonth && donationDate.getFullYear() === lastYear;
     });
     

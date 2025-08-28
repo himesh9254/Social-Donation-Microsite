@@ -5,7 +5,19 @@ import { sendThankYouEmail, sendFallbackEmail } from '@/lib/gmail';
 
 export async function POST(request: NextRequest) {
   try {
-    const { donorName, donorEmail, amount, currency = 'USD', frequency = 'One-time', message = '' } = await request.json();
+    // Parse JSON with error handling
+    let requestBody;
+    try {
+      requestBody = await request.json();
+    } catch (parseError) {
+      console.error('JSON parsing error:', parseError);
+      return NextResponse.json(
+        { error: 'Invalid JSON data in request' },
+        { status: 400 }
+      );
+    }
+
+    const { donorName, donorEmail, amount, currency = 'USD', frequency = 'One-time', message = '' } = requestBody;
 
     // Validate required fields
     if (!donorName || !donorEmail || !amount) {
@@ -44,8 +56,14 @@ export async function POST(request: NextRequest) {
     // Step 2: Generate personalized thank you email using Gemini API
     let emailBody: string;
     try {
-      emailBody = await generateThankYouEmail(donorName, parseFloat(amount), currency);
-      console.log('AI-generated email content created');
+      // Check if Gemini API key is configured
+      if (process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== 'your_gemini_api_key') {
+        emailBody = await generateThankYouEmail(donorName, parseFloat(amount), currency);
+        console.log('AI-generated email content created');
+      } else {
+        console.log('Gemini API not configured, using fallback email content');
+        throw new Error('Gemini API not configured');
+      }
     } catch (aiError) {
       console.error('Error generating AI email:', aiError);
       // Use fallback email content
@@ -66,10 +84,26 @@ The Social Good Fund Team`;
     // Step 3: Send thank you email
     let emailSent = false;
     try {
-      if ((process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) || (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD)) {
-        emailSent = await sendThankYouEmail(donorEmail, donorName, emailBody);
+      // Check if Gmail credentials are configured
+      const hasGmailCredentials = (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) || 
+                                 (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD);
+      
+      if (hasGmailCredentials) {
+        try {
+          emailSent = await sendThankYouEmail(donorEmail, donorName, emailBody);
+          if (emailSent) {
+            console.log('Thank you email sent successfully via Gmail');
+          } else {
+            console.log('Gmail email failed, using fallback');
+            emailSent = await sendFallbackEmail(donorEmail, donorName, parseFloat(amount), currency);
+          }
+        } catch (gmailError) {
+          console.error('Gmail error, using fallback:', gmailError);
+          emailSent = await sendFallbackEmail(donorEmail, donorName, parseFloat(amount), currency);
+        }
       } else {
-        // Use fallback email method
+        // Use fallback email method when Gmail is not configured
+        console.log('Gmail not configured, using fallback email method');
         emailSent = await sendFallbackEmail(donorEmail, donorName, parseFloat(amount), currency);
       }
       
@@ -80,6 +114,8 @@ The Social Good Fund Team`;
       }
     } catch (emailError) {
       console.error('Error sending thank you email:', emailError);
+      // Don't fail the entire request if email fails
+      emailSent = false;
     }
 
     // Return success response
@@ -95,8 +131,15 @@ The Social Good Fund Team`;
 
   } catch (error) {
     console.error('Donation submission error:', error);
+    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
+    
+    // Ensure we always return proper JSON
     return NextResponse.json(
-      { error: 'Failed to process donation' },
+      { 
+        error: 'Failed to process donation',
+        details: error instanceof Error ? error.message : 'Unknown error',
+        timestamp: new Date().toISOString()
+      },
       { status: 500 }
     );
   }

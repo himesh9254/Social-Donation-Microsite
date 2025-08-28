@@ -29,6 +29,28 @@
    NEXT_PUBLIC_PAYPAL_CLIENT_ID=your_actual_client_id
    ```
 
+**Important Notes:**
+- `NEXT_PUBLIC_PAYPAL_CLIENT_ID` is required for the frontend PayPal SDK
+- `PAYPAL_CLIENT_ID` and `PAYPAL_CLIENT_SECRET` are used for server-side API calls
+- Both should use the same client ID value
+- The `NEXT_PUBLIC_` prefix makes the variable available in the browser
+
+### 3. Common Issues and Solutions
+
+#### PayPal SDK Script Fails to Load
+If you see an error like "Failed to load the PayPal JS SDK script", check:
+
+1. **Missing Environment Variable**: Ensure `NEXT_PUBLIC_PAYPAL_CLIENT_ID` is set
+2. **Invalid Client ID**: Verify your client ID is correct and active
+3. **Network Issues**: Check if PayPal's CDN is accessible
+4. **CORS Issues**: Ensure your domain is registered with PayPal
+
+#### Environment Variable Not Loading
+- Restart your development server after adding environment variables
+- Check that `.env.local` exists in the project root
+- Verify the file format (no spaces around `=`)
+- Use `console.log(process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID)` to debug
+
 ### 3. Test the Integration
 
 1. Start the development server:

@@ -5,13 +5,17 @@ const createTransporter = () => {
   const emailUser = process.env.EMAIL_USER || process.env.GMAIL_USER;
   const emailPassword = process.env.EMAIL_PASSWORD || process.env.GMAIL_APP_PASSWORD;
   
-  console.log('Gmail Configuration Debug:');
-  console.log('- EMAIL_USER:', process.env.EMAIL_USER ? 'SET' : 'NOT SET');
-  console.log('- EMAIL_PASSWORD:', process.env.EMAIL_PASSWORD ? 'SET' : 'NOT SET');
-  console.log('- GMAIL_USER:', process.env.GMAIL_USER ? 'SET' : 'NOT SET');
-  console.log('- GMAIL_APP_PASSWORD:', process.env.GMAIL_APP_PASSWORD ? 'SET' : 'NOT SET');
-  console.log('- Using email user:', emailUser);
-  console.log('- Using email password:', emailPassword ? 'SET' : 'NOT SET');
+  // Check if we have the required credentials
+  if (!emailUser || !emailPassword) {
+    console.log('Gmail Configuration Debug:');
+    console.log('- EMAIL_USER:', process.env.EMAIL_USER ? 'SET' : 'NOT SET');
+    console.log('- EMAIL_PASSWORD:', process.env.EMAIL_PASSWORD ? 'SET' : 'NOT SET');
+    console.log('- GMAIL_USER:', process.env.GMAIL_USER ? 'SET' : 'NOT SET');
+    console.log('- GMAIL_APP_PASSWORD:', process.env.GMAIL_APP_PASSWORD ? 'SET' : 'NOT SET');
+    console.log('- Using email user:', emailUser);
+    console.log('- Using email password:', emailPassword ? 'SET' : 'NOT SET');
+    throw new Error('Gmail credentials not configured');
+  }
   
   return nodemailer.createTransport({
     service: 'gmail',

@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import paypal from '@paypal/paypal-server-sdk';
+import * as paypal from '@paypal/checkout-server-sdk';
 import { saveDonation } from '@/lib/database';
 import { generateThankYouEmail } from '@/lib/gemini';
-import { sendThankYouEmail, sendFallbackEmail } from '@/lib/email';
+import { sendThankYouEmail, sendFallbackEmail } from '@/lib/gmail';
 
 // Configure PayPal environment
 const environment = process.env.PAYPAL_MODE === 'live'
@@ -76,10 +76,26 @@ The Social Good Fund Team`;
     // Step 4: Send thank you email
     let emailSent = false;
     try {
-      if (process.env.RESEND_API_KEY) {
-        emailSent = await sendThankYouEmail(donorEmail || 'anonymous@example.com', donorName || 'Anonymous', emailBody);
+      // Check if Gmail credentials are configured
+      const hasGmailCredentials = (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) || 
+                                 (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD);
+      
+      if (hasGmailCredentials) {
+        try {
+          emailSent = await sendThankYouEmail(donorEmail || 'anonymous@example.com', donorName || 'Anonymous', emailBody);
+          if (emailSent) {
+            console.log('Thank you email sent successfully via Gmail');
+          } else {
+            console.log('Gmail email failed, using fallback');
+            emailSent = await sendFallbackEmail(donorEmail || 'anonymous@example.com', donorName || 'Anonymous', amount, currency);
+          }
+        } catch (gmailError) {
+          console.error('Gmail error, using fallback:', gmailError);
+          emailSent = await sendFallbackEmail(donorEmail || 'anonymous@example.com', donorName || 'Anonymous', amount, currency);
+        }
       } else {
-        // Use fallback email method
+        // Use fallback email method when Gmail is not configured
+        console.log('Gmail not configured, using fallback email method');
         emailSent = await sendFallbackEmail(donorEmail || 'anonymous@example.com', donorName || 'Anonymous', amount, currency);
       }
       
@@ -90,6 +106,8 @@ The Social Good Fund Team`;
       }
     } catch (emailError) {
       console.error('Error sending thank you email:', emailError);
+      // Don't fail the entire request if email fails
+      emailSent = false;
     }
 
     // Return success response
@@ -108,9 +126,31 @@ The Social Good Fund Team`;
   } catch (error) {
     console.error('PayPal capture order error:', error);
     
+    // Handle specific PayPal errors
+    let errorMessage = 'Failed to capture PayPal payment';
+    let statusCode = 500;
+    
+    if (error instanceof Error) {
+      const errorString = error.message;
+      
+      if (errorString.includes('INSTRUMENT_DECLINED')) {
+        errorMessage = 'Payment method was declined. Please try a different payment method or contact your bank.';
+        statusCode = 400;
+      } else if (errorString.includes('INSUFFICIENT_FUNDS')) {
+        errorMessage = 'Insufficient funds. Please check your account balance or try a different payment method.';
+        statusCode = 400;
+      } else if (errorString.includes('PAYER_ACTION_REQUIRED')) {
+        errorMessage = 'Additional verification required. Please complete the payment process.';
+        statusCode = 400;
+      } else if (errorString.includes('ORDER_NOT_APPROVED')) {
+        errorMessage = 'Payment was not approved. Please try again.';
+        statusCode = 400;
+      }
+    }
+    
     return NextResponse.json(
-      { error: 'Failed to capture PayPal payment' },
-      { status: 500 }
+      { error: errorMessage },
+      { status: statusCode }
     );
   }
 }

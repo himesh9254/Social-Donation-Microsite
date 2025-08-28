@@ -5,11 +5,7 @@ export async function GET(request: NextRequest) {
   try {
     const donations = readDonations();
     
-    return NextResponse.json({
-      success: true,
-      donations,
-      count: donations.length,
-    });
+    return NextResponse.json(donations);
   } catch (error) {
     console.error('Error reading donations:', error);
     return NextResponse.json(

@@ -3,13 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CMS</title>
+    <title>Donations Site CMS</title>
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+    </style>
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      // Initialize CMS with custom configuration
+      if (typeof CMS !== 'undefined') {
+        CMS.init({
+          config: {
+            load_config_file: true
+          }
+        });
+      }
+    </script>
   </body>
-  </html>
+</html>
 
 
 

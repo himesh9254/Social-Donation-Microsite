@@ -248,15 +248,18 @@ export default function AdminDashboard() {
                   <div className="w-2 h-2 bg-green-600 rounded-full"></div>
                 </button>
                 
-                <button className="w-full flex items-center justify-between p-3 bg-purple-50 hover:bg-purple-100 rounded-xl transition-colors group">
+                <a 
+                  href="/admin/content"
+                  className="w-full flex items-center justify-between p-3 bg-purple-50 hover:bg-purple-100 rounded-xl transition-colors group"
+                >
                   <div className="flex items-center space-x-3">
                     <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
                       <Globe className="w-4 h-4 text-purple-600" />
                     </div>
-                    <span className="font-medium text-gray-900">Site Settings</span>
+                    <span className="font-medium text-gray-900">Edit Content</span>
                   </div>
                   <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                </button>
+                </a>
               </div>
             </div>
 

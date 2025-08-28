@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import paypal from '@paypal/paypal-server-sdk';
+import * as paypal from '@paypal/checkout-server-sdk';
 
 // Configure PayPal environment
 const environment = process.env.PAYPAL_MODE === 'live' 
